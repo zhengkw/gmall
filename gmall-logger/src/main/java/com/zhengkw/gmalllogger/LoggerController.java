@@ -1,8 +1,11 @@
 package com.zhengkw.gmalllogger;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zhengkw.common.Constant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +34,10 @@ public class LoggerController {
         return "ok";
     }
 
+    //利用spring提供的模板来操作kafka，配置放在application.xml里面！
+    @Autowired
+    private KafkaTemplate<String, String> kafka;
+
     /**
      * @param log
      * @descrption: 将log发送给kafka
@@ -39,7 +46,8 @@ public class LoggerController {
      * @author: zhengkw
      */
     private void sendToKafka(String log) {
-
+        //发送启动日志到kafka
+        kafka.send(Constant.START_TOPIC, log);
     }
 
     /**
