@@ -1,7 +1,5 @@
 package com.zhengkw.gmall.realtime.util
 
-
-import com.zhengkw.common.Constant
 import com.zhengkw.common.util.PorpertiesUtil
 import com.zhengkw.scala.util.PropertyUtil
 import kafka.serializer.StringDecoder
@@ -21,11 +19,10 @@ import org.apache.spark.streaming.kafka.KafkaUtils
 object MyKafkaUtil {
 
   var param = Map[String, String](
-    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> PropertyUtil
-      .getProperty("config.properties",
-        "kafka.servers"),
-    ConsumerConfig.GROUP_ID_CONFIG -> PorpertiesUtil.getProperty("kafka.group.id",
-      "config.properties")
+    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> PropertyUtil.getProperty("config.properties", "kafka.servers"),
+    ConsumerConfig.GROUP_ID_CONFIG -> PorpertiesUtil.getProperty("kafka.group.id", "config.properties")
+    /*    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> PropertyUtil.getProperty("config.properties", "kafka.servers"),
+        ConsumerConfig.GROUP_ID_CONFIG -> PropertyUtil.getProperty("config.properties", "kafka.group.id")*/
   )
 
   /**

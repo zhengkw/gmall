@@ -1,11 +1,7 @@
 package com.zhengkw.common.util;
 
-import javax.lang.model.element.VariableElement;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.PrivateKey;
 import java.util.Properties;
 
 /**
@@ -34,10 +30,10 @@ public class PorpertiesUtil {
         try {
             //方式1
             //通过类加载器获取properties文件流
-            //  in = PorpertiesUtil.class.getClassLoader().getResourceAsStream(fileName);
+          //  in = PorpertiesUtil.class.getClassLoader().getResourceAsStream(fileName);
             //方式2
-            //通过类进行获取properties文件流
-            in = PorpertiesUtil.class.getResourceAsStream(fileName);
+            //通过类进行获取properties文件流 必须加斜杠
+           in = PorpertiesUtil.class.getResourceAsStream("/"+fileName);
             //加载文件
             props.load(in);
             //获取属性值！
