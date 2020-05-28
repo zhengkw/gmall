@@ -39,7 +39,7 @@ public class LoggerController {
      * @author: zhengkw
      */
     private void sendToKafka(String log) {
-        logger.info(log);
+
     }
 
     /**
@@ -50,7 +50,7 @@ public class LoggerController {
      * @author: zhengkw
      */
     private void saveToLocalDisk(String log) {
-
+        logger.info(log);
     }
 
     /**
