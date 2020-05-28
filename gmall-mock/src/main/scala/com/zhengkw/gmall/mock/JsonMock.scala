@@ -49,7 +49,7 @@ object JsonMock {
   // app 分发渠道分布
   val channelOpts = RandomOptions(
     ("xiaomi", 10), ("huawei", 20), ("wandoujia", 30),
-    ("360", 20), ("tencent", 20), ("baidu", 10), ("website", 10))
+    ("360", 20), ("tencent", 20), ("baidu", 10), ("website", 10), ("apple", 30))
 
   // 生成模拟数据的时候是否结束退出
   val quitOpts = RandomOptions((true, 5), (false, 95))
@@ -132,7 +132,7 @@ object JsonMock {
         val oneEventLog: String = initOneEventLog(oneStartupLog)
         // 发送事件日志
         LogUploader.sendLog(oneEventLog)
-     //   println(oneEventLog)
+        //   println(oneEventLog)
         Thread.sleep(100)
       }
       Thread.sleep(1000)
