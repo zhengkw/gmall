@@ -47,7 +47,13 @@ public class LoggerController {
      */
     private void sendToKafka(String log) {
         //发送启动日志到kafka
-        kafka.send(Constant.START_TOPIC, log);
+        // 1. 写一个生产者
+        // 2. 不同的日志发送不到不同的topic
+        if (log.contains("startup")) {
+            kafka.send(Constant.START_TOPIC, log);
+        } else {
+            kafka.send(Constant.EVENT_TOPIC, log);
+        }
     }
 
     /**
