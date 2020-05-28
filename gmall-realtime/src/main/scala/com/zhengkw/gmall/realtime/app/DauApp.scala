@@ -19,7 +19,7 @@ object DauApp {
     //一批3秒
     val ssc = new StreamingContext(conf, Seconds(3))
     //调用util里的kafka工具消费数据
-    val ds = MyKafkaUtil.getKafkaStream(ssc, Constant.START_TOPIC)
+    val ds = MyKafkaUtil.getKafkaStream(ssc, Constant.STARTUP_TOPIC)
     //控制台上打印
     ds.print(1000)
     ssc.start()
