@@ -12,3 +12,12 @@ gen
 ### Example user template template
 ### Example user template
 
+src/main/resources/static/
+src/main/resources/templates/
+gmall-common/src/
+gmall-logger/src/main/resources/static/
+gmall-logger/src/main/resources/templates/
+gmall-mock/src/main/java/
+gmall-mock/src/main/resources/
+gmall-mock/src/test/
+src/
