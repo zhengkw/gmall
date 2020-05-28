@@ -13,7 +13,7 @@ function countKafkaBrokers(){
 # 起一个nginx, 三个log服务器  log.sh start/stop/
 case $1 in
 start)
-    zhstart
+    zkstart
 	kstart
 	while [ 1 ]
 	do
@@ -50,7 +50,7 @@ stop)
                         fi
         sleep 2s
         done
-	zhstop
+	zkstop
 ;;
 
 *)
