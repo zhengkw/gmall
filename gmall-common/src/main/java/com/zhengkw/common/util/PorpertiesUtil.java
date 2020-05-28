@@ -17,7 +17,7 @@ import java.util.Properties;
  * @since: jdk 1.8
  */
 public class PorpertiesUtil {
-    private String value = "";
+    public static String value = "";
     private static Properties props;
 
     /**
@@ -28,13 +28,13 @@ public class PorpertiesUtil {
      * @date: 20/05/28 下午 8:27
      * @author: zhengkw
      */
-    public String getProperty(String propertyName, String fileName) {
+    public static String getProperty(String propertyName, String fileName) {
         props = new Properties();
         InputStream in = null;
         try {
             //方式1
             //通过类加载器获取properties文件流
-          //  in = PorpertiesUtil.class.getClassLoader().getResourceAsStream(fileName);
+            //  in = PorpertiesUtil.class.getClassLoader().getResourceAsStream(fileName);
             //方式2
             //通过类进行获取properties文件流
             in = PorpertiesUtil.class.getResourceAsStream(fileName);
