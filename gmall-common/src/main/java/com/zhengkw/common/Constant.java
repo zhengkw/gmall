@@ -9,6 +9,6 @@ package com.zhengkw.common;
  * @since: jdk 1.8
  */
 public class Constant {
-    public static final String START_TOPIC = "start_topic";
+    public static final String STARTUP_TOPIC = "startup_topic";
     public static final String EVENT_TOPIC = "event_topic";
 }

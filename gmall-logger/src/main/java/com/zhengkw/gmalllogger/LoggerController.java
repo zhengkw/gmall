@@ -30,7 +30,7 @@ public class LoggerController {
         //落盘
         saveToLocalDisk(log);
         //send给kafka
-        //  sendToKafka(log);
+       sendToKafka(log);
         return "ok";
     }
 
@@ -50,7 +50,7 @@ public class LoggerController {
         // 1. 写一个生产者
         // 2. 不同的日志发送不到不同的topic
         if (log.contains("startup")) {
-            kafka.send(Constant.START_TOPIC, log);
+            kafka.send(Constant.STARTUP_TOPIC, log);
         } else {
             kafka.send(Constant.EVENT_TOPIC, log);
         }
