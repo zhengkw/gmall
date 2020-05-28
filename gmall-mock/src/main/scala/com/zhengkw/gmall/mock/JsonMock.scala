@@ -132,6 +132,7 @@ object JsonMock {
         val oneEventLog: String = initOneEventLog(oneStartupLog)
         // 发送事件日志
         LogUploader.sendLog(oneEventLog)
+     //   println(oneEventLog)
         Thread.sleep(100)
       }
       Thread.sleep(1000)
