@@ -9,10 +9,5 @@ out
 gen
 /target
 
-### Example user template
-src/main/resources/static/
-src/main/resources/templates/
-gmall-logger/src/main/resources/static/
-gmall-logger/src/main/resources/templates/
-gmall-mock/src/test/
+
 
