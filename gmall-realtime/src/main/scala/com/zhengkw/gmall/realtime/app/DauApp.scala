@@ -85,18 +85,7 @@ object DauApp {
         zkUrl = Some("hadoop102,hadoop103,hadoop104:2181")
       )
     })
-    /* startupLog.foreachRDD(rdd => {
-       // 写法1: 把rdd中, 所有的mid拉取到驱动端, 一次性写入
-       // 写法2: 每个分区向外写
-       rdd.foreachPartition(startupLogs => {
-         val client: Jedis = MyRedisUtil.getClient
 
-         startupLogs.foreach(log => {
-           client.sadd(Constant.STARTUP_TOPIC + ":" + log.logDate, log.mid)
-         })
-         client.close()
-       })
-     })*/
     ssc.start()
     ssc.awaitTermination()
   }
