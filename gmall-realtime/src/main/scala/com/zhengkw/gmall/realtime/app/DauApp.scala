@@ -65,15 +65,19 @@ object DauApp {
             case (mid, logIt) => logIt.toList.minBy(_.ts) // 排序取最小
           }
       })
-    // 把新启动的设备id写入到redis
+    startupLog.print(1000)
+      // 把新启动的设备id写入到redis
     startupLog.foreachRDD(rdd => {
-      val client = MyRedisUtil.getClient
       // 写法2: 每个分区向外写
       rdd.foreachPartition(startuplog => {
+        val client = MyRedisUtil.getClient // 问题在这里
+        // 连接必须一个分区一个
         startuplog.foreach(log =>
+          //startup_topic:2020-05-29
           client.sadd(Constant.STARTUP_TOPIC + ":" + log.logDate, log.mid))
-
+        client.close() //ok
       })
+
     })
     /* startupLog.foreachRDD(rdd => {
        // 写法1: 把rdd中, 所有的mid拉取到驱动端, 一次性写入

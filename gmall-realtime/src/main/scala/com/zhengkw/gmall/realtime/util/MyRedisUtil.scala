@@ -1,7 +1,7 @@
 package com.zhengkw.gmall.realtime.util
 
 import com.zhengkw.common.util.PorpertiesUtil
-import redis.clients.jedis.{Jedis, JedisPool, JedisPoolConfig}
+import redis.clients.jedis.{JedisPool, JedisPoolConfig}
 
 /**
  * @ClassName:RedisUtil
