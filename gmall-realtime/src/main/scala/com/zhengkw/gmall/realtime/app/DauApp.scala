@@ -69,6 +69,7 @@ object DauApp {
       // 把新启动的设备id写入到redis
     startupLog.foreachRDD(rdd => {
       // 写法2: 每个分区向外写
+      //数据写入redis
       rdd.foreachPartition(startuplog => {
         val client = MyRedisUtil.getClient // 问题在这里 分区内获取对象，否则需要序列化！
         // 连接必须一个分区一个
@@ -77,7 +78,12 @@ object DauApp {
           client.sadd(Constant.STARTUP_TOPIC + ":" + log.logDate, log.mid))
         client.close() //ok
       })
-
+     //数据写入hbase
+      import org.apache.phoenix.spark._
+      rdd.saveToPhoenix("GMALL_DAU",
+        Seq("MID", "UID", "APPID", "AREA", "OS", "CHANNEL", "LOGTYPE", "VERSION", "TS", "LOGDATE", "LOGHOUR"),
+        zkUrl = Some("hadoop102,hadoop103,hadoop104:2181")
+      )
     })
     /* startupLog.foreachRDD(rdd => {
        // 写法1: 把rdd中, 所有的mid拉取到驱动端, 一次性写入

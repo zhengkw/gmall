@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="gmall-publisher" />
         <module name="gmall-mock" />
         <module name="gmall-common" />
         <module name="gmall-realtime" />
@@ -16,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="gmall-logger" options="" />
+      <module name="gmall-publisher" options="-parameters" />
     </option>
   </component>
 </project>
