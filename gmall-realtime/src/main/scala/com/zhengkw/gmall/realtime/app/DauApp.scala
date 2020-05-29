@@ -70,7 +70,7 @@ object DauApp {
     startupLog.foreachRDD(rdd => {
       // 写法2: 每个分区向外写
       rdd.foreachPartition(startuplog => {
-        val client = MyRedisUtil.getClient // 问题在这里
+        val client = MyRedisUtil.getClient // 问题在这里 分区内获取对象，否则需要序列化！
         // 连接必须一个分区一个
         startuplog.foreach(log =>
           //startup_topic:2020-05-29
