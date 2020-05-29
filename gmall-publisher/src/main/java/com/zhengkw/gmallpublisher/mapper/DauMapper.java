@@ -1,5 +1,7 @@
 package com.zhengkw.gmallpublisher.mapper;
 
+import org.springframework.stereotype.Component;
+
 /**
  * InterfaceName:DauMapper
  *
@@ -9,6 +11,7 @@ package com.zhengkw.gmallpublisher.mapper;
  * version:
  * @since: jdk 1.8
  */
+
 public interface DauMapper {
     Long showDau(String Date);
 }

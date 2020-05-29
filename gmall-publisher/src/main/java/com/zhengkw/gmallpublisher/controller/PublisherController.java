@@ -1,6 +1,5 @@
 package com.zhengkw.gmallpublisher.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhengkw.gmallpublisher.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
