@@ -27,6 +27,7 @@ public class PublisherController {
     @Autowired
     private PublisherService service;
 
+    //  http://localhost:8070/realtime-total?date=2020-05-29
     @GetMapping("/realtime-total")
     public String showDau(@RequestParam("date") String date) {
         Long dau = service.showDau(date);
