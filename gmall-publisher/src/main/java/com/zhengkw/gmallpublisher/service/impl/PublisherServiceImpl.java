@@ -4,6 +4,7 @@ import com.zhengkw.gmallpublisher.mapper.DauMapper;
 import com.zhengkw.gmallpublisher.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @ClassName:PublisherServiceImpl
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @version:1.0
  * @since: jdk 1.8
  */
-@Component("PublisherServiceImpl")
+@Service
 public class PublisherServiceImpl implements PublisherService {
 
     @Autowired
