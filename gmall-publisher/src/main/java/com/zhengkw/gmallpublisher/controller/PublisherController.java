@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,4 +52,21 @@ public class PublisherController {
 
 
     }
+
+    // http://localhost:8070/realtime-hour?id=dau&date=2020-02-11
+    @GetMapping("/realtime-hour")
+    public String showHourInfo(String id, String date) {
+        Map<String, Long> today = service.showHourInfo(date);
+        Map<String, Long> yesterday = service.showHourInfo(getYesterday(date));
+        Map<String, Map<String, Long>> map = new HashMap<>();
+        map.put("today", today);
+        map.put("yesterday", yesterday);
+        return JSON.toJSONString(map);
+    }
+
+    private String getYesterday(String date) {
+        //return LocalDate.parse(date).plusDays(-1).toString();
+        return LocalDate.parse(date).minusDays(1).toString();
+    }
+
 }

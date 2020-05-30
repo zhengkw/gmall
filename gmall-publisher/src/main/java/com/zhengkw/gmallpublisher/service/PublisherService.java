@@ -1,5 +1,7 @@
 package com.zhengkw.gmallpublisher.service;
 
+import java.util.Map;
+
 /**
  * InterfaceName:PublisherService
  *
@@ -10,5 +12,8 @@ package com.zhengkw.gmallpublisher.service;
  * @since: jdk 1.8
  */
 public interface PublisherService {
-    Long showDau(String Date);
+    Long showDau(String date);
+
+    //日活小时明细
+    Map<String, Long> showHourInfo(String date);
 }

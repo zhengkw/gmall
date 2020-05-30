@@ -2,6 +2,9 @@ package com.zhengkw.gmallpublisher.mapper;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * InterfaceName:DauMapper
  *
@@ -13,5 +16,7 @@ import org.springframework.stereotype.Component;
  */
 
 public interface DauMapper {
-    Long showDau(String Date);
+    Long showDau(String date);
+
+    List<Map<String, Object>> showHourInfo(String date);
 }
