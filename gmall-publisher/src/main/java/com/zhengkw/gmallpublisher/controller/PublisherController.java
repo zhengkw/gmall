@@ -56,12 +56,15 @@ public class PublisherController {
     // http://localhost:8070/realtime-hour?id=dau&date=2020-02-11
     @GetMapping("/realtime-hour")
     public String showHourInfo(String id, String date) {
-        Map<String, Long> today = service.showHourInfo(date);
-        Map<String, Long> yesterday = service.showHourInfo(getYesterday(date));
-        Map<String, Map<String, Long>> map = new HashMap<>();
-        map.put("today", today);
-        map.put("yesterday", yesterday);
-        return JSON.toJSONString(map);
+        if ("dau".equals(id)) {
+            Map<String, Long> today = service.showHourInfo(date);
+            Map<String, Long> yesterday = service.showHourInfo(getYesterday(date));
+            Map<String, Map<String, Long>> map = new HashMap<>();
+            map.put("today", today);
+            map.put("yesterday", yesterday);
+            return JSON.toJSONString(map);
+        }
+        return "ok";
     }
 
     private String getYesterday(String date) {
