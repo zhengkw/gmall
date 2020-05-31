@@ -14,6 +14,9 @@ import com.zhengkw.util.MyKafkaUtil
  * @ClassName:CanalClient
  * @author: zhengkw
  * @description: canal客户端操作
+ *              mysql端测试 存储过程调用 造数据
+ *               # 日期  订单个数 用户数 是否删除以前的数据
+ *               call init_data("2019-05-16", 10,2,false)
  * @date: 20/05/31下午 1:25
  * @version:1.0
  * @since: jdk 1.8 scala 2.11.8
