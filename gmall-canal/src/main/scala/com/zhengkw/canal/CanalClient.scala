@@ -26,7 +26,7 @@ object CanalClient {
    * @descrption: 解析数据
    * @param rowDataList 数据集 一个rowData就是一行数据
    * @param tableName   表名
-   * @param eventType   事件类型 insert delete update
+   * @param eventType   事件类型 insert delete update EventType.INSERT枚举类
    * @return: voidt
    * @date: 20/05/31 下午 5:59
    * @author: zhengkw
@@ -80,6 +80,10 @@ object CanalClient {
           val rowDataList: util.List[CanalEntry.RowData] = rowChange.getRowDatasList
           parseData(rowDataList, entry.getHeader.getTableName, rowChange.getEventType)
         }
+      }
+      else{
+        println("没有拉倒数据, 2s之后继续拉....")
+        Thread.sleep(2000)
       }
     }
   }
