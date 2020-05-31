@@ -66,6 +66,7 @@ esac
 # ps -ef | grep gmall-logger | grep -v grep | awk '{print $2}' | xargs kill -9
 
 # ps -ef | awk '/gmall-logger/ && !/awk/{print $2}'
+# ps -ef | awk '/redis-server/ && !/awk/{print $2}'
 
 #1. java -jar ....jar   jar包内已经打包的主类
 
