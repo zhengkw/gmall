@@ -58,7 +58,7 @@ object CanalClient {
     //连接到canal
     connector.connect()
     // 2. 订阅你要处理的具体表 gmall1128下所有的表
-    connector.subscribe("gmall1128")
+    connector.subscribe("gmall1128.*")
     // 3. 读取数据, 解析
     // 一直监听mysql数据变化，所以死循环
     while (true) {
