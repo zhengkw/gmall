@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,10 +59,37 @@ public class PublisherServiceImpl implements PublisherService {
         return result;
     }
 
+
+    /**
+     * @param date
+     * @descrption: 当天销售额
+     * @return: java.lang.Double
+     * @date: 20/06/01 下午 3:38
+     * @author: zhengkw
+     */
     @Override
     public Double getTotalAmount(String date) {
         Double totalAmount = orderMapper.getTotalAmount(date);
         return totalAmount == null ? 0 : totalAmount;
+    }
+
+    /**
+     * @param date
+     * @descrption: 当天每小时销售额
+     * @return: java.util.Map<java.lang.String, java.lang.Double>
+     * @date: 20/06/01 下午 3:38
+     * @author: zhengkw
+     */
+    @Override
+    public Map<String, Double> getHourAmount(String date) {
+        List<Map<String, Object>> hourAmount = orderMapper.getHourAmount(date);
+        Map<String, Double> result = new HashMap<>();
+        for (Map<String, Object> map : hourAmount) {
+            String key = (String) map.get("CREATE_DATE");
+            double value = ((BigDecimal) map.get("SUM")).doubleValue();
+            result.put(key, value);
+        }
+        return result;
     }
 
 

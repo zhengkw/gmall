@@ -9,6 +9,16 @@
       WHERE
                 CREATE_DATE =#{date}
     </select>
-
-
+    <select id="getHourAmount" resultMap="getResult">
+      SELECT
+            CREATE_DATE,
+            sum(TOTAL_AMOUNT) sum
+      FROM
+               GMALL_ORDER_INFO1128
+      WHERE
+                CREATE_DATE =#{date}
+      GROUP BY
+               CREATE_DATE
+    </select>
+    <resultMap id="getResult" type="java.util.Map"></resultMap>
 </mapper>

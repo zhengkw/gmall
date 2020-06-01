@@ -1,5 +1,6 @@
 package com.zhengkw.gmallpublisher.service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,4 +20,7 @@ public interface PublisherService {
 
     //获取当天的销售总额
     Double getTotalAmount(String date);
+
+    //获取当天的每小时销售额明细
+    Map<String, Double> getHourAmount(String date);
 }
