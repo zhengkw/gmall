@@ -85,7 +85,8 @@ public class PublisherServiceImpl implements PublisherService {
         List<Map<String, Object>> hourAmount = orderMapper.getHourAmount(date);
         Map<String, Double> result = new HashMap<>();
         for (Map<String, Object> map : hourAmount) {
-            String key = (String) map.get("CREATE_DATE");
+            String key = (String) map.get("CREATE_HOUR");
+            key = key.trim();
             double value = ((BigDecimal) map.get("SUM")).doubleValue();
             result.put(key, value);
         }

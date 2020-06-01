@@ -39,7 +39,7 @@ object DauApp {
       // 连接redis, 读取数据. 其实是在driver中,获客户端, 然后获取所有已经启动的设备
       rdd => {
         //获取redis客户端
-        val client = MyRedisUtil.getClient
+        val client: Jedis = MyRedisUtil.getClient
         //获取存在redis中的mids数据
         val mids = client.smembers(Constant.STARTUP_TOPIC + ":" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
         //归还redis客户端到连接池

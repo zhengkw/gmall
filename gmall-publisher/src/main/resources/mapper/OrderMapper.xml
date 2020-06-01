@@ -11,14 +11,14 @@
     </select>
     <select id="getHourAmount" resultMap="getResult">
       SELECT
-            CREATE_DATE,
+            CREATE_HOUR,
             sum(TOTAL_AMOUNT) sum
       FROM
                GMALL_ORDER_INFO1128
       WHERE
                 CREATE_DATE =#{date}
       GROUP BY
-               CREATE_DATE
+               CREATE_HOUR
     </select>
     <resultMap id="getResult" type="java.util.Map"></resultMap>
 </mapper>

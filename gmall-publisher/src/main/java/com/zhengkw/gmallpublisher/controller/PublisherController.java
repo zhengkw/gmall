@@ -1,7 +1,6 @@
 package com.zhengkw.gmallpublisher.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.zhengkw.gmallpublisher.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,6 +70,7 @@ public class PublisherController {
             return JSON.toJSONString(map);
         }
         // http://localhost:8070/realtime-hour?id=order_amount&date=2020-05-31
+       //call init_data("2020-06-01", 10,2,false)
         else if ("order_amount".equals(id)) {
             Map<String, Double> today = service.getHourAmount(date);
             Map<String, Double> yesterday = service.getHourAmount(getYesterday(date));
