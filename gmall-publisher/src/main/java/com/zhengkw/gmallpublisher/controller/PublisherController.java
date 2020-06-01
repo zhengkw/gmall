@@ -48,6 +48,12 @@ public class PublisherController {
         map2.put("name", "新增设备");
         map2.put("value", "233");
         result.add(map2);
+
+        Map<String, String> map3 = new HashMap<>();
+        map3.put("id", "total_amount");
+        map3.put("name", "销售总额");
+        map3.put("value", service.getTotalAmount(date).toString());
+        result.add(map3);
         return JSON.toJSONString(result);
 
 

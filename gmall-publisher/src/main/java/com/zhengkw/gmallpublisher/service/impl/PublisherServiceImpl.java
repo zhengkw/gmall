@@ -1,6 +1,7 @@
 package com.zhengkw.gmallpublisher.service.impl;
 
 import com.zhengkw.gmallpublisher.mapper.DauMapper;
+import com.zhengkw.gmallpublisher.mapper.OrderMapper;
 import com.zhengkw.gmallpublisher.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,8 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Autowired
     DauMapper dau;
+    @Autowired
+    OrderMapper orderMapper;
 
     /**
      * @param date
@@ -53,6 +56,12 @@ public class PublisherServiceImpl implements PublisherService {
             result.put(key, value);
         }
         return result;
+    }
+
+    @Override
+    public Double getTotalAmount(String date) {
+        Double totalAmount = orderMapper.getTotalAmount(date);
+        return totalAmount == null ? 0 : totalAmount;
     }
 
 

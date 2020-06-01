@@ -16,4 +16,7 @@ public interface PublisherService {
 
     //日活小时明细
     Map<String, Long> showHourInfo(String date);
+
+    //获取当天的销售总额
+    Double getTotalAmount(String date);
 }
