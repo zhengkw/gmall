@@ -26,6 +26,22 @@ case class OrderInfo(id: String,
                      parent_order_id: String,
                      out_trade_no: String,
                      trade_body: String,
-                     var create_date: String,
-                     var create_hour: String)
+                     var create_date: String = null,
+                     var create_hour: String = null) {
+
+  //脱敏数据  人名  电话
+  consignee = consignee.substring(0, 1) + printStar(consignee.length - 2)
+  //一个圆括号就一个捕获组  $1代表捕获组1 左边这个！
+  consignee_tel = consignee_tel.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2")
+  //create_time  2020-06-01 07:41:29
+  create_date = create_time.substring(0, 10)
+  create_hour = create_time.substring(create_time.length - 9, create_time.length - 7)
+
+
+  def printStar(len: Int) = {
+    print("*" * len)
+  }
+}
+
+
 
