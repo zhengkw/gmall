@@ -35,7 +35,7 @@ case class OrderInfo(id: String,
   consignee_tel = consignee_tel.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2")
   //create_time  2020-06-01 07:41:29
   create_date = create_time.substring(0, 10)
-  create_hour = create_time.substring(create_time.length - 9, create_time.length - 7)
+  create_hour = create_time.substring(create_time.length - 9, create_time.length - 6)
 
 
   def printStar(len: Int) = {
