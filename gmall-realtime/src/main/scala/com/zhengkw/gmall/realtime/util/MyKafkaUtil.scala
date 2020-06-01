@@ -20,9 +20,8 @@ object MyKafkaUtil {
 
   var param = Map[String, String](
     ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> PropertyUtil.getProperty("config.properties", "kafka.servers"),
-    ConsumerConfig.GROUP_ID_CONFIG -> PorpertiesUtil.getProperty("kafka.group.id", "config.properties")
-    /*    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> PropertyUtil.getProperty("config.properties", "kafka.servers"),
-        ConsumerConfig.GROUP_ID_CONFIG -> PropertyUtil.getProperty("config.properties", "kafka.group.id")*/
+    ConsumerConfig.GROUP_ID_CONFIG -> PorpertiesUtil.getProperty("kafka.group.id", "config.properties"),
+    ConsumerConfig.AUTO_OFFSET_RESET_CONFIG -> PorpertiesUtil.getProperty("kafka.offset", "config.properties")
   )
 
   /**
