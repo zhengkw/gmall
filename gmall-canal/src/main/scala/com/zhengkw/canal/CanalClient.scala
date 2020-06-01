@@ -14,7 +14,7 @@ import com.zhengkw.util.MyKafkaUtil
  * @ClassName:CanalClient
  * @author: zhengkw
  * @description: canal客户端操作
- *              mysql端测试 存储过程调用 造数据
+ *               mysql端测试 存储过程调用 造数据
  *               # 日期  订单个数 用户数 是否删除以前的数据
  *               call init_data("2019-05-16", 10,2,false)
  * @date: 20/05/31下午 1:25
@@ -45,6 +45,7 @@ object CanalClient {
           val key: String = column.getName // 列名
           val value = column.getValue // 列值
           result.put(key, value)
+       //   println(result)
         }
         // 把数据写入到kafka中. 用一个生产者
         MyKafkaUtil.send(Constant.ORDER_INFO_TOPIC, result.toJSONString)
@@ -81,7 +82,7 @@ object CanalClient {
           parseData(rowDataList, entry.getHeader.getTableName, rowChange.getEventType)
         }
       }
-      else{
+      else {
         println("没有拉倒数据, 2s之后继续拉....")
         Thread.sleep(2000)
       }
