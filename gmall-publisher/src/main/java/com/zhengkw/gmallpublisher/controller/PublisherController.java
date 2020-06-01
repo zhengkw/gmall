@@ -71,7 +71,7 @@ public class PublisherController {
         }
         // http://localhost:8070/realtime-hour?id=order_amount&date=2020-05-31
        //call init_data("2020-06-01", 10,2,false)
-        else if ("order_amount".equals(id)) {
+        else if ("total_amount".equals(id)) {
             Map<String, Double> today = service.getHourAmount(date);
             Map<String, Double> yesterday = service.getHourAmount(getYesterday(date));
             Map<String, Map<String, Double>> map = new HashMap<>();
