@@ -8,10 +8,11 @@ for host in hadoop102 hadoop103 hadoop104
 do
 	echo "==========启动$host ES========"
 	ssh $host "nohup $es_home/bin/elasticsearch 1>$log_home/start.log 2>$log_home/error.log &"
-    echo "==========启动$host kibana========"
+done
+    echo "==========启动hadoop102 kibana========"
         nohup $kibana_home/bin/kibana 1> $log_home/kibanastart.log 2>$log_home/kibanastop.log &
 
-done
+
 xcall jps
 ;;
 "stop")
