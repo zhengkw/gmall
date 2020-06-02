@@ -1,6 +1,5 @@
 package com.zhengkw.gmall.realtime.app
 
-import java.util
 
 import com.alibaba.fastjson.JSON
 import com.zhengkw.common.Constant
@@ -8,6 +7,7 @@ import com.zhengkw.gmall.realtime.bean.{AlertInfo, EventLog}
 import com.zhengkw.gmall.realtime.util.MyKafkaUtil
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
+
 
 /**
  * @ClassName:AlertApp
@@ -63,20 +63,22 @@ object AlertApp {
       .map({
         case (mid, logIt) => {
           // 保存5分钟内登陆的领取优惠券所有 不同用户 (建立向es写数据, 用的是java客户端, 不支持sclaa的集合, 所以, 使用java的Set)
-          val uidSet = new util.HashSet[String]()
+          val uidSet = new java.util.HashSet[String]()
           // 存储5分钟内所有的事件类型
-          val eventList = new util.ArrayList[String]()
+          val eventList = new java.util.ArrayList[String]()
           // 存储领取优惠券的那些商品id(同uid一样用set去重)
-          val itemSet = new util.HashSet[String]()
+          val itemSet = new java.util.HashSet[String]()
           // 是否浏览过商品. 默认没有
-          for (event <- logIt) {
-            //遍历到一个event就添加一次到list中！
-            eventList.add(event.eventId)
-            //定义浏览标记 默认未点击
-            var isClickItem = false
-            //模式匹配event判断内容中是否含有 coupon关键字
-            import scala.util.control.Breaks._
-            breakable {
+          import scala.util.control.Breaks._
+          breakable {
+            for (event <- logIt) {
+              //遍历到一个event就添加一次到list中！
+              eventList.add(event.eventId)
+              //定义浏览标记 默认未点击
+              var isClickItem = false
+              //模式匹配event判断内容中是否含有 coupon关键字
+
+
               event.eventId match {
                 case "coupon" =>
                   //记录领取的用户
@@ -95,8 +97,8 @@ object AlertApp {
             // 返回预警信息.
             // (是否产生预警信息(boolean),   预警信息的封装 ) 元组
             (!isClickItem && uidSet.size() >= 3, AlertInfo(mid, uidSet, itemSet, eventList))
-
           }
+
         }
       })
     //测试是否有数据
