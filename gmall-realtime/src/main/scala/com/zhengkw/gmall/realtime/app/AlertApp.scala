@@ -85,7 +85,8 @@ object AlertApp {
                   itemSet.add(event.itemId)
                 case "clickItem" =>
                   isClickItem = true
-                  //跳出本次循环分析下一个event
+                  //跳出循环，因为以mid分组后的事件信息里，在当前时间往前推5分钟
+                  // 这个时间里用户发生了用户点击行为，所以不用继续分析该mid的事件信息了！
                   break
                 //如果用户有浏览商品行为，则将标记转为true 定义标记默认false
                 case _ => //其他事件不处理
