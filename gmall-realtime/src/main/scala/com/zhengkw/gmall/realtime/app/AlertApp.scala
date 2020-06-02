@@ -92,11 +92,10 @@ object AlertApp {
                 case _ => //其他事件不处理
               }
             }
-            // 返回预警信息.
-            // (是否产生预警信息(boolean),   预警信息的封装 ) 元组
-            (!isClickItem && uidSet.size() >= 3, AlertInfo(mid, uidSet, itemSet, eventList))
           }
-
+          // 返回预警信息.
+          // (是否产生预警信息(boolean),   预警信息的封装 ) 元组
+          (!isClickItem && uidSet.size() >= 3, AlertInfo(mid, uidSet, itemSet, eventList))
         }
       })
     //测试是否有数据
