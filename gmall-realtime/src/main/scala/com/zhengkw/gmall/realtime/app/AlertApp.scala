@@ -70,15 +70,13 @@ object AlertApp {
           val itemSet = new java.util.HashSet[String]()
           // 是否浏览过商品. 默认没有
           import scala.util.control.Breaks._
+          //定义浏览标记 默认未点击
+          var isClickItem = false
           breakable {
             for (event <- logIt) {
               //遍历到一个event就添加一次到list中！
               eventList.add(event.eventId)
-              //定义浏览标记 默认未点击
-              var isClickItem = false
               //模式匹配event判断内容中是否含有 coupon关键字
-
-
               event.eventId match {
                 case "coupon" =>
                   //记录领取的用户
