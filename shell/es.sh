@@ -22,7 +22,7 @@ do
 	ssh $host "jps | awk '/Elasticsearch/ {print \$1}' | xargs kill -9"
 done
 	echo "==========关闭hadoop102 Kibana========"
-ps -ef | grep node | grep -v grep|awk '{print $2}'|xargs kill -9
+ps -ef | grep kibana | grep -v grep|awk '{print $2}'|xargs kill -9
 
 xcall jps
 ;;
