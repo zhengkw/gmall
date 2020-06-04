@@ -4,7 +4,6 @@ package com.zhengkw.gmall.realtime.app
 import com.alibaba.fastjson.JSON
 import com.zhengkw.common.Constant
 import com.zhengkw.gmall.realtime.bean.{AlertInfo, EventLog}
-import com.zhengkw.gmall.realtime.util
 import com.zhengkw.gmall.realtime.util.MyKafkaUtil
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
