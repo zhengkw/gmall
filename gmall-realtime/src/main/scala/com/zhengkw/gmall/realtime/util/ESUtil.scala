@@ -50,7 +50,7 @@ object ESUtil {
   /**
    * @descrption: 批量插入
    * @param index
-   * @param sources  采用迭代器是因为可协变
+   * @param sources 采用迭代器是因为可协变
    * @return: void
    * @date: 20/06/05 上午 12:04
    * @author: zhengkw
@@ -77,6 +77,13 @@ object ESUtil {
     client.execute(builder.build())
     client.shutdownClient()
   }
+
+  /**
+   * @descrption: 隐式类
+   * @return: unit
+   * @date: 20/06/05 上午 1:19
+   * @author: zhengkw
+   */
   implicit class RichES(rdd: RDD[AlertInfo]) {
     def saveToES(index: String): Unit = {
       rdd.foreachPartition((it: Iterator[AlertInfo]) => {
