@@ -84,7 +84,7 @@ object ESUtil {
         // 如果id相同, 后面的会覆盖前面的!!!  mid_ + 分钟数
         val sources = it
           .map(info => (info.mid + "_" + info.ts / 1000 / 60, info))
-        ESUtil.insertBulk("gmall_coupon_alert", sources)
+        ESUtil.insertBulk(index, sources)
       })
     }
   }
