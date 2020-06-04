@@ -4,6 +4,7 @@ package com.zhengkw.gmall.realtime.app
 import com.alibaba.fastjson.JSON
 import com.zhengkw.common.Constant
 import com.zhengkw.gmall.realtime.bean.{AlertInfo, EventLog}
+import com.zhengkw.gmall.realtime.util
 import com.zhengkw.gmall.realtime.util.MyKafkaUtil
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
@@ -35,6 +36,7 @@ object AlertApp {
     val conf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("AlertApp")
     val ssc = new StreamingContext(conf, Seconds(3))
     // 1. 消费事件日志
+
     val sourceStream = MyKafkaUtil
       .getKafkaStream(ssc, Constant.EVENT_TOPIC)
       // 1.1给数据加窗口
@@ -97,6 +99,13 @@ object AlertApp {
           // (是否产生预警信息(boolean),   预警信息的封装 ) 元组
           (!isClickItem && uidSet.size() >= 3, AlertInfo(mid, uidSet, itemSet, eventList, System.currentTimeMillis()))
         }
+      })
+    alertInfoStream
+      .filter(_._1) // 把需要预警过滤出来
+      .map(_._2) // 只保留预警信息
+      .foreachRDD(rdd => {
+        import com.zhengkw.gmall.realtime.util.ESUtil._
+        rdd.saveToES("gmall_coupon_alert")
       })
     //测试是否有数据
     // sourceStream.print(1000)
