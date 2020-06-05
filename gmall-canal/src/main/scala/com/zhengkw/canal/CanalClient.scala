@@ -16,7 +16,7 @@ import com.zhengkw.util.MyKafkaUtil
  * @description: canal客户端操作
  *               mysql端测试 存储过程调用 造数据
  *               # 日期  订单个数 用户数 是否删除以前的数据
- *               call init_data("2019-05-16", 10,2,false)
+ *               CALL init_data("2019-06-05", 2,2,false)
  * @date: 20/05/31下午 1:25
  * @version:1.0
  * @since: jdk 1.8 scala 2.11.8
@@ -36,20 +36,26 @@ object CanalClient {
                 eventType: CanalEntry.EventType) = {
     // 计算订单总额 order_info
     if (tableName == "order_info" && eventType == EventType.INSERT && rowDataList != null && rowDataList.size() > 0) {
-      import scala.collection.JavaConversions._
-      for (rowData <- rowDataList) {
-        val result = new JSONObject()
-        // 一个rowData表示一行数据, 所有列组成一个json对象, 写入到Kafka中
-        val columnList: util.List[CanalEntry.Column] = rowData.getAfterColumnsList
-        for (column <- columnList) { // column 列
-          val key: String = column.getName // 列名
-          val value = column.getValue // 列值
-          result.put(key, value)
-       //   println(result)
-        }
-        // 把数据写入到kafka中. 用一个生产者
-        MyKafkaUtil.send(Constant.ORDER_INFO_TOPIC, result.toJSONString)
+      sendToKafka(Constant.ORDER_INFO_TOPIC, rowDataList)
+    } else if (tableName == "order_detail" && eventType == EventType.INSERT && rowDataList != null && rowDataList.size() > 0) {
+      sendToKafka(Constant.ORDER_DETAIL_TOPIC, rowDataList)
+    }
+  }
+
+  private def sendToKafka(topic: String, rowDataList: util.List[CanalEntry.RowData]) = {
+    import scala.collection.JavaConversions._
+    for (rowData <- rowDataList) {
+      val result = new JSONObject()
+      // 一个rowData表示一行数据, 所有列组成一个json对象, 写入到Kafka中
+      val columnList: util.List[CanalEntry.Column] = rowData.getAfterColumnsList
+      for (column <- columnList) { // column 列
+        val key: String = column.getName // 列名
+        val value = column.getValue // 列值
+        result.put(key, value)
+        //   println(result)
       }
+      // 把数据写入到kafka中. 用一个生产者
+      MyKafkaUtil.send(topic, result.toJSONString)
     }
   }
 
