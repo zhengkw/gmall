@@ -1,7 +1,7 @@
 package com.zhengkw.gmall.realtime.util
 
 import com.zhengkw.common.util.PorpertiesUtil
-import redis.clients.jedis.{JedisPool, JedisPoolConfig}
+import redis.clients.jedis.{Jedis, JedisPool, JedisPoolConfig}
 
 /**
  * @ClassName:RedisUtil
@@ -26,5 +26,11 @@ object MyRedisUtil {
   val port = PorpertiesUtil.getProperty("redis.port", "config.properties").toInt
   private val pool = new JedisPool(conf, host, port)
 
-  def getClient = pool.getResource()
+  //def getClient = pool.getResource()
+  def getClient = {
+    val client = new Jedis(host, port, 60 * 1000)
+    //必须要连接！
+    client.connect()
+    client
+  }
 }
